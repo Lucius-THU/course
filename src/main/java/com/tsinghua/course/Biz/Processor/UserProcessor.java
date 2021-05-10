@@ -10,10 +10,7 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 import com.tsinghua.course.Frame.Util.*;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 
 /**
  * @描述 用户原子处理器，所有与用户相关的原子操作都在此处理器中执行
@@ -72,4 +69,21 @@ public class UserProcessor {
     }
 
 
+    public boolean checkVerificationCode(String verificationCode) {
+        /**
+         * 检验验证码的代码
+         */
+        //TODO:添加Mob的相关API。
+        /**
+         * 暂时使用比较幼崽的方式测试
+         */
+        try{
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream(("mailsnotworking.lyx")));
+            String true_code=(String) in.readObject();
+            return verificationCode.equals(true_code);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }

@@ -8,17 +8,22 @@ import com.tsinghua.course.Biz.Controller.Params.CommonInParams;
 /**
  * @描述 用户登录的入参
  **/
-@BizType(BizTypeEnum.USER_LOGIN)
+@BizType(BizTypeEnum.USER_MYLOGIN)
 public class MyLoginInParams extends CommonInParams {
     // 登录用的密码
     @Required
+    private String phoneNumber;
+
     private String password;
 
-    public String getPassword() {
-        return password;
+    private String verificationCode;
+
+    public String getPhoneNumber(){ return phoneNumber;}
+
+    public String getPassword(){return password;}
+
+    public String getVerificationCode() {
+        return verificationCode;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
