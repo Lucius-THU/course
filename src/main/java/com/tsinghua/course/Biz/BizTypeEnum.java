@@ -23,8 +23,14 @@ public enum BizTypeEnum {
     FILE_UPLOAD_TEST(TestController.class, "/test/upload", "文件上传测试"),
     FILE_DOWNLOAD_TEST(TestController.class, "/test/url", "获取文件下载的路径"),
     MULTI_RETURN_TEST(TestController.class, "/test/multiParams", "返回多个参数的测试"),
-    MONGODB_TEST(TestController.class, "/test/mongodb", "mongodb数据库功能测试")
+    MONGODB_TEST(TestController.class, "/test/mongodb", "mongodb数据库功能测试"),
+
+    /** 正式业务：最近更新：用户登录相关业务*/
+    USER_SENDCODE(UserController.class, "/api/v1/verificationCode","用户请求发送验证码"),
+    USER_MYLOGIN(UserController.class, "/api/v1/login","用户使用密码或验证码登录"),
+
     ;
+
 
     BizTypeEnum(Class<?> controller, String httpPath, String description) {
         this.controller = controller;

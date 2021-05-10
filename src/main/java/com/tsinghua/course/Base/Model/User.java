@@ -10,6 +10,7 @@ import java.util.Map;
  **/
 @Document("User")
 public class User {
+
     /** 子对象文档 */
     public static class SubObj {
         /** 存储的时间 */
@@ -92,5 +93,16 @@ public class User {
 
     public void setSubObj(SubObj subObj) {
         this.subObj = subObj;
+    }
+
+    /**
+     * 以下为正式开发加入的内容
+     */
+    String phoneNumber;
+    // 电话号码
+    public String getPhoneNumber() { return phoneNumber; }
+
+    public User(String phoneNumber) {
+        this.phoneNumber=phoneNumber;
     }
 }

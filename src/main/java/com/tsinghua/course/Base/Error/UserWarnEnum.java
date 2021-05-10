@@ -8,7 +8,9 @@ public enum UserWarnEnum implements ExceptionInterface {
 
     NEED_LOGIN("UserWarn002", "用户未登录或登录已过期"),
 
-    PERMISSION_DENIED("UserWarn003", "无权限访问对应内容")
+    PERMISSION_DENIED("UserWarn003", "无权限访问对应内容"),
+
+    SENDCODE_FAILED_PNUMBER_INVALID("UserWarn004","请输入正确的手机号")
     ;
 
     UserWarnEnum(String code, String msg) {

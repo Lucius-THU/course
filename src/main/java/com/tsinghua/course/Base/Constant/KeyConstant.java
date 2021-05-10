@@ -15,4 +15,7 @@ public class KeyConstant {
     /** 以下为User关键key */
     // 用户名
     public static final String USERNAME = "username";
+
+    // 电话号码
+    public static final String PHONE_NUMBER = "phoneNumber";
 }

@@ -7,6 +7,7 @@ import com.tsinghua.course.Base.Error.UserWarnEnum;
 import com.tsinghua.course.Base.Model.User;
 import com.tsinghua.course.Biz.Controller.Params.CommonOutParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.LoginInParams;
+import com.tsinghua.course.Biz.Controller.Params.UserParams.In.SendCodeInParams;
 import com.tsinghua.course.Biz.Processor.UserProcessor;
 import com.tsinghua.course.Frame.Util.*;
 import io.netty.channel.ChannelHandlerContext;
@@ -46,5 +47,16 @@ public class UserController {
         return new CommonOutParams(true);
     }
 
-
+    @BizType(BizTypeEnum.USER_SENDCODE)
+    public CommonOutParams userSendCode(SendCodeInParams inParams) throws Exception{
+        String phoneNumber=inParams.getPhoneNumber();
+        if (userProcessor.checkPhoneNumber(phoneNumber)==false)
+            throw new CourseWarn(UserWarnEnum.SENDCODE_FAILED_PNUMBER_INVALID);
+        User user = userProcessor.getUserByPhoneNumber(phoneNumber);
+        if(user==null){
+            userProcessor.CreateNewUser(phoneNumber);
+        }
+        userProcessor.sendCode();
+        return new CommonOutParams(true);
+    }
 }
