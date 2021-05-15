@@ -8,7 +8,7 @@ import com.tsinghua.course.Biz.Controller.Params.CommonInParams;
 /**
  * @描述 用户登录的入参
  **/
-@BizType(BizTypeEnum.USER_LOGIN)
+@BizType(BizTypeEnum.USER_SENDCODE)
 public class SendCodeInParams extends CommonInParams {
 
     @Required

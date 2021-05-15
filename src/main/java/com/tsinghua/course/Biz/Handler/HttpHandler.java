@@ -56,6 +56,7 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
     private HttpSession httpSession;
     /** 之前是否已经存在httpSession */
     private boolean hasPreSession;
+//    private String requestMethod;
 
     /** 处理http请求的实际函数 */
     @Override
@@ -72,6 +73,7 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
             /** 将session存入线程变量之中，方便后来的业务获取 */
             ThreadUtil.setHttpSession(httpSession);
             /** 解析参数列表 */
+//            requestMethod = getMethod
             requestParams = getRequestParams(request);
 
             /** 获取操作类型 */
