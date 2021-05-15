@@ -9,6 +9,7 @@ import com.tsinghua.course.Biz.Controller.Params.CommonOutParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.LoginInParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.MyLoginInParams;
 import com.tsinghua.course.Biz.Controller.Params.UserParams.In.SendCodeInParams;
+import com.tsinghua.course.Biz.Controller.Params.UserParams.Out.SendCodeOutParams;
 import com.tsinghua.course.Biz.Processor.UserProcessor;
 import com.tsinghua.course.Frame.Util.*;
 import io.netty.channel.ChannelHandlerContext;
@@ -53,15 +54,15 @@ public class UserController {
         String phoneNumber=inParams.getPhoneNumber();
         if (!userProcessor.checkPhoneNumber(phoneNumber))
             throw new CourseWarn(UserWarnEnum.SENDCODE_FAILED_PNUMBER_INVALID);
-        userProcessor.sendCode();
-        return new CommonOutParams(true);
+        String code=userProcessor.sendCode();
+        return new SendCodeOutParams(code);
     }
 
     @BizType(BizTypeEnum.USER_MYLOGIN)
     public CommonOutParams userMyLogin(MyLoginInParams inParams) throws Exception{
         String phoneNumber=inParams.getPhoneNumber();
         String verificationCode=inParams.getVerificationCode();
-        if(!userProcessor.checkPhoneNumber(phoneNumber)||!userProcessor.checkVerificationCode(phoneNumber)){
+        if(!userProcessor.checkPhoneNumber(phoneNumber)||!userProcessor.checkVerificationCode(verificationCode)){
             throw new CourseWarn(UserWarnEnum.MYLOGIN_FAILED_CODE_OR_PNUMBER_INVALID);
         }
         User user = userProcessor.getUserByPhoneNumber(phoneNumber);

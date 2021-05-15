@@ -4,7 +4,6 @@ import com.tsinghua.course.Base.Constant.KeyConstant;
 import com.tsinghua.course.Base.Model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.aggregation.ArrayOperators;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
@@ -50,7 +49,7 @@ public class UserProcessor {
         User newUser= new User(phoneNumber);
     }
 
-    public void sendCode() {
+    public String sendCode() {
         /**
          *  发送短信的代码
          */
@@ -66,6 +65,7 @@ public class UserProcessor {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return random_str;
     }
 
 
