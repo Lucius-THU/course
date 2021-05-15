@@ -113,7 +113,7 @@ public class HttpHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
                 /** 处理出错，记录日志 */
                 LogUtil.ERROR(null, bizTypeEnum, ParseUtil.getJSONString(requestParams), e);
                 /** 返回客户端INTERNAL_SERVER_ERROR，即服务器内部错误 */
-                retStr = new SysErrorOutParams().toString();
+                retStr = new SysErrorOutParams(e).toString();
             }
 
             /** 将返回结果写入管道 */

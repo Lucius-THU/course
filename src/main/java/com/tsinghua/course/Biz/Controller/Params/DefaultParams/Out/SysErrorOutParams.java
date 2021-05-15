@@ -11,9 +11,19 @@ public class SysErrorOutParams extends CommonOutParams {
     // 错误描述信息
     private String msg;
 
+    private String serverError;
+
     public SysErrorOutParams() {
         code = "500";
         msg = "服务器内部错误";
+        serverError = "";
+        success = false;
+    }
+
+    public SysErrorOutParams(Exception e) {
+        code = "500";
+        msg = "服务器内部错误";
+        serverError = e.getMessage();
         success = false;
     }
 }
